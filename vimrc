@@ -178,7 +178,9 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 let OmniCpp_MayCompleteArrow = 1
 
 
-
-
-
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+
+"php doc注释插件
+source ~/.vim/php-doc.vim
+nnoremap <C-K> :call PhpDocSingle()<CR>
+vnoremap <C-K> :call PhpDocRange()<CR>
