@@ -9,3 +9,6 @@ cd .vim
 
 :pluginInstall
 ```
+
+##自动补全换用nvim/coc
++ 安装nodejs、npm、yarn

@@ -3,18 +3,21 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}    "目录树，触发是才生成
 Plug 'Xuyuanp/nerdtree-git-plugin'                        "目录树配置图标
 Plug 'majutsushi/tagbar'
-Plug 'ervandew/supertab'                                  "使Tab快捷键具有更快捷的上下文提示功能
+"Plug 'ervandew/supertab'                                  "使Tab快捷键具有更快捷的上下文提示功能
 Plug 'vim-airline/vim-airline-themes'                     "底部标签栏
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/syntastic'                               "语法识别
+"Plug 'scrooloose/syntastic'                               "语法识别
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'scrooloose/nerdcommenter'                           "快速注释
 Plug 'cohlin/vim-colorschemes'                            "x-code主题
 Plug 'tobyS/pdv'
 Plug 'jacoborus/tender'                                   "tender主题
-Plug 'SirVer/ultisnips'                                   "代码补全
+"Plug 'SirVer/ultisnips'                                   "代码补全
 Plug 'honza/vim-snippets'
 Plug 'ConradIrwin/vim-bracketed-paste'                   "处理复制问题
 Plug 'kien/ctrlp.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
+"Plug 'fatih/vim-go'
 call plug#end()
 
 
@@ -100,7 +103,7 @@ set backspace=2                 "高版本vim不兼容删除baspace 　设置 ba
 "             颜色配置             "
 """"""""""""""""""""""""""""""""""""
 set t_Co=256                    "设置终端256色"
-colorscheme tender
+colorscheme desert 
 
 "底部状态栏
 let g:airline_theme="cobalt2"
@@ -135,6 +138,33 @@ endif
 "             插件设置             "
 """"""""""""""""""""""""""""""""""""
 """""""""""插件快捷键""""""""""""
+
+"""""""""""coc快捷键""""""""""""
+"set modeline "识别文件modeline
+imap <C-l> <Plug>(coc-snippets-expand)
+"跳转到定义位置
+nmap <C-]> <Plug>(coc-definition)
+"跳转到引用位置
+nmap <C-i> <Plug>(coc-references)
+" 跳转到错误位置
+nmap <leader>e <Plug>(coc-diagnostic-next)
+
+
+" 检查上前一个位置是否为空格
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+
+" tab键进行多次映射
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"使用 <cr> 确认补全：
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 "上一个/下一个标签页切换的快捷键
 nmap <F3> :TagbarToggle<CR>
@@ -184,3 +214,5 @@ let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 source ~/.vim/php-doc.vim
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
