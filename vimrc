@@ -95,7 +95,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jacoborus/tender'                                   "tender主题
 
 Plug 'ConradIrwin/vim-bracketed-paste'                   "处理复制问题
-Plug 'majutsushi/tagbar'                   "
+Plug 'majutsushi/tagbar'                   
 Plug 'scrooloose/nerdcommenter'                           "快速注释
 Plug 'ctrlpvim/ctrlp.vim'                                   "文件搜索器
 Plug 'easymotion/vim-easymotion'                                   "快速定位
@@ -145,6 +145,37 @@ endif
 "             插件设置             "
 """"""""""""""""""""""""""""""""""""
 """""""""""插件快捷键"""""""""""""""
+
+"""""""""""""coc快捷键""""""""""""""
+"set modeline "识别文件modeline
+imap <C-l> <Plug>(coc-snippets-expand)
+"跳转到定义位置
+nmap <C-]> <Plug>(coc-definition)
+"跳转到引用位置
+nmap <C-i> <Plug>(coc-references)
+" 跳转到错误位置
+nmap <leader>e <Plug>(coc-diagnostic-next)
+
+
+" 检查上前一个位置是否为空格
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+
+" tab键进行多次映射
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"使用 <cr> 确认补全：
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+
+
+
 """"""""""majutsushi/tagbar"""""""""
 
 "上一个/下一个标签页切换的快捷键
