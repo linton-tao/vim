@@ -56,8 +56,8 @@ inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
-inoremap ts $_GET['traceSql'] =1;<ESC>
-inoremap sql $_GET['sql'] =1;<ESC>
+"inoremap ts $_GET['traceSql'] =1;<ESC>
+"inoremap sql $_GET['sql'] =1;<ESC>
 
 "注释工具
 let mapleader = ","             "设置前缀键
@@ -100,10 +100,11 @@ Plug 'scrooloose/nerdcommenter'                           "快速注释
 Plug 'ctrlpvim/ctrlp.vim'                                   "文件搜索器
 Plug 'easymotion/vim-easymotion'                                   "快速定位
 Plug 'tpope/vim-surround'                                   "成对编辑
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  "模糊查询 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  "模糊查询 
 Plug 'junegunn/fzf'               "模糊查询 
 Plug 'junegunn/fzf.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 call plug#end()
 
@@ -173,6 +174,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "使用 <cr> 确认补全：
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
+call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets')
 
 
 
@@ -220,3 +222,12 @@ nmap ss <Plug>(easymotion-s2)
 "let g:indentLine_bgcolor_gui = '#FF5F00'
 let g:indentLine_char = 'c'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+
+
+
+source ~/.vim/company-doc.vim
+ "php doc注释插件
+source ~/.vim/php-doc.vim
+nnoremap <C-K> :call PhpDocSingle()<CR>
+vnoremap <C-K> :call PhpDocRange()<CR>
