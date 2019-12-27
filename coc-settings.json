@@ -14,4 +14,7 @@
             "filetypes": ["go"]
         }
     },
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.undefinedFunctions":false,
+    "intelephense.diagnostics.undefinedMethods":false
 }

@@ -1,6 +1,7 @@
 """"""""""""""""""""""""""""""""""""
 "             基本设置             ”
 """"""""""""""""""""""""""""""""""""
+set encoding=utf-8
 set nocompatible           "关闭兼容模式
 syntax enable 			        "语法高亮
 filetype plugin indent on 	    "文件插件
@@ -104,6 +105,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  "模糊查询
 Plug 'junegunn/fzf'               "模糊查询 
 Plug 'junegunn/fzf.vim'
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 call plug#end()
@@ -231,3 +235,4 @@ source ~/.vim/company-doc.vim
 source ~/.vim/php-doc.vim
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
+".vim/plugged/coc.nvim/plugin/coc.vim jumpDefinition 改成cocActionAsync

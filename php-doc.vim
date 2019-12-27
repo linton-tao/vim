@@ -78,10 +78,10 @@ let g:pdv_cfg_CommentSingle = "//"
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = "$id$"
-let g:pdv_cfg_Author = "lishuo<lishuo@zuoyebang.com>"
+let g:pdv_cfg_Author = "taolintao<taolintao@zuoyebang.com>"
 let g:pdv_cfg_Copyright = "2015-2017 The PHP Group"
 
-let g:pdv_cfg_ReturnVal = "Array"
+let g:pdv_cfg_ReturnVal = "mixed"
 
 " Wether to create @uses tags for implementation of interfaces and inheritance
 let g:pdv_cfg_Uses = 1

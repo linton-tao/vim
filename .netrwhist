@@ -1,10 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
-let g:netrw_dirhist_8='/home/homework/app/actplatmis/models/service/data'
-let g:netrw_dirhist_7='/home/homework/app/laxinquality/controllers'
-let g:netrw_dirhist_6='/home/homework/app/actplatmis/models/service'
-let g:netrw_dirhist_5='/home/homework/app/actplatmis/models/service/page'
-let g:netrw_dirhist_4='/home/homework/app/actplatmis/models/service/page/cdkey'
-let g:netrw_dirhist_3='/home/homework/app/actplatmis/library/actplatmis/base'
-let g:netrw_dirhist_2='/home/homework/app/actplatmis/models/service/page/cdkey'
-let g:netrw_dirhist_1='/home/homework/webserver/conf/vhost'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/homework/app/laxinmis'
+let g:netrw_dirhist_2='/home/homework/app'
+let g:netrw_dirhist_3='/home/homework/app/laxinmis/models/service/page'
+let g:netrw_dirhist_4='/home/homework/app/laxinmis'
+let g:netrw_dirhist_5='/home/homework/app'
