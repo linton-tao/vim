@@ -8,6 +8,7 @@ Plug 'vim-airline/vim-airline-themes'                     "底部标签栏
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/syntastic'                               "语法识别
 Plug 'scrooloose/nerdcommenter'                           "快速注释
+Plug 'ctrlpvim/ctrlp.vim'                                   "文件搜索器
 Plug 'cohlin/vim-colorschemes'                            "x-code主题
 Plug 'tobyS/pdv'
 Plug 'jacoborus/tender'                                   "tender主题
@@ -181,6 +182,7 @@ let OmniCpp_MayCompleteArrow = 1
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 
 "php doc注释插件
+source ~/.vim/company-doc.vim
 source ~/.vim/php-doc.vim
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
