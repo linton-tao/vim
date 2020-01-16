@@ -178,7 +178,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "使用 <cr> 确认补全：
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets')
+call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets', 'coc-vetur')
 
 
 
@@ -186,8 +186,8 @@ call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets')
 
 "上一个/下一个标签页切换的快捷键
 nmap <F3> :TagbarToggle<CR>
-nmap <F9> <ESC>:bp<RETURN>
-nmap <F10> <ESC>:bn<RETURN>
+nmap <leader>1 <ESC>:bp<RETURN>
+nmap <leader>2 <ESC>:bn<RETURN>
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 """"""""""""目录树设置""""""""""""""
