@@ -1,31 +1,9 @@
-set nocompatible           "关闭兼容模式
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}    "目录树，触发是才生成
-Plug 'Xuyuanp/nerdtree-git-plugin'                        "目录树配置图标
-Plug 'majutsushi/tagbar'
-Plug 'ervandew/supertab'                                  "使Tab快捷键具有更快捷的上下文提示功能
-Plug 'vim-airline/vim-airline-themes'                     "底部标签栏
-Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/syntastic'                               "语法识别
-Plug 'scrooloose/nerdcommenter'                           "快速注释
-Plug 'ctrlpvim/ctrlp.vim'                                   "文件搜索器
-Plug 'cohlin/vim-colorschemes'                            "x-code主题
-Plug 'tobyS/pdv'
-Plug 'jacoborus/tender'                                   "tender主题
-Plug 'SirVer/ultisnips'                                   "代码补全
-Plug 'honza/vim-snippets'
-Plug 'ConradIrwin/vim-bracketed-paste'                   "处理复制问题
-Plug 'kien/ctrlp.vim'
-call plug#end()
-
-
-syntax enable 			        "语法高亮
-syntax on	    		        "语法高亮
-
 """"""""""""""""""""""""""""""""""""
 "             基本设置             ”
 """"""""""""""""""""""""""""""""""""
-filetype plugin on		        "文件类型插件开启
+set encoding=utf-8
+set nocompatible           "关闭兼容模式
+syntax enable 			        "语法高亮
 filetype plugin indent on 	    "文件插件
 set showtabline=2               "总是显示标签栏 
 set laststatus=2                "总显示最后一个窗口的状态行
@@ -33,7 +11,7 @@ set laststatus=2                "总显示最后一个窗口的状态行
 set wildmenu                    "vim 自身命令行模式智能补全
 set nu 				            "显示行号
 set ruler			            "在右下角显示光标的坐标
-set ic 				            "忽略大小写查找
+set ic 		      	            "忽略大小写查找
 set smartcase 			        "搜索时大小写敏感
 set hlsearch 			        "高亮显示搜索结果
 set incsearch 			        "边输边搜，即时更新搜索结果
@@ -43,9 +21,9 @@ set mouse=v 			        "鼠标可视
 set nobackup                    "取消vim自动备份
 set noswapfile
 
+
 set scrolloff=10                "向下滚动保留10行显示
 set noeb vb t_vb=               "取消报错闪烁和提醒响铃
-
 "sql补全模式
 let g:sql_type_default = 'mysql'
 
@@ -55,6 +33,8 @@ set cursorcolumn
 hi CursorLine cterm=NONE ctermbg=black
 hi Cursorcolumn cterm=NONE ctermbg=black"
 hi WildMenu        guifg=#ffffff guibg=#FFB6C1 term=reverse
+
+
 
 
 """"""""""""""""""""""""""""""""""""
@@ -77,11 +57,17 @@ inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
-inoremap ts $_GET['traceSql'] =1;<ESC>
-inoremap sql $_GET['sql'] =1;<ESC>
+"inoremap ts $_GET['traceSql'] =1;<ESC>
+"inoremap sql $_GET['sql'] =1;<ESC>
 
 "注释工具
 let mapleader = ","             "设置前缀键
+
+"切换
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 """"""""""""""""""""""""""""""""""""
 "             缩进问题             "
@@ -95,6 +81,38 @@ set fdm=indent                  "代码折叠   gc折叠 go打开
 set nofoldenable                "打开所有折叠
 set smartindent                 "智能对齐
 set backspace=2                 "高版本vim不兼容删除baspace 　设置 backspace可以删除任意字符
+
+
+""""""""""""""""""""""""""""""""""""
+"             缩进问题             "
+""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}    "目录树，触发是才生成
+Plug 'Xuyuanp/nerdtree-git-plugin'                        "目录树配置图标
+Plug 'mhinz/vim-startify'                                "修改启动界面
+Plug 'Yggdroot/indentLine'                                "增加代码缩进线条
+Plug 'vim-airline/vim-airline'                          "底部标签栏
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jacoborus/tender'                                   "tender主题
+
+Plug 'ConradIrwin/vim-bracketed-paste'                   "处理复制问题
+Plug 'majutsushi/tagbar'                   
+Plug 'scrooloose/nerdcommenter'                           "快速注释
+Plug 'ctrlpvim/ctrlp.vim'                                   "文件搜索器
+Plug 'easymotion/vim-easymotion'                                   "快速定位
+Plug 'tpope/vim-surround'                                   "成对编辑
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  "模糊查询 
+Plug 'junegunn/fzf'               "模糊查询 
+Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+call plug#end()
+
+
 
 
 """"""""""""""""""""""""""""""""""""
@@ -119,10 +137,7 @@ let g:airline_right_sep = '◀'
 
 
 if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
+    set t_ut=
 endif
 
 if $TERM=="xterm-256color" && (has("termguicolors"))
@@ -131,29 +146,58 @@ endif
 
 
 
-
 """"""""""""""""""""""""""""""""""""
 "             插件设置             "
 """"""""""""""""""""""""""""""""""""
-"""""""""""插件快捷键""""""""""""
+"""""""""""插件快捷键"""""""""""""""
+
+"""""""""""""coc快捷键""""""""""""""
+"set modeline "识别文件modeline
+imap <C-l> <Plug>(coc-snippets-expand)
+"跳转到定义位置
+nmap <C-]> <Plug>(coc-definition)
+"跳转到引用位置
+nmap <C-i> <Plug>(coc-references)
+" 跳转到错误位置
+nmap <leader>e <Plug>(coc-diagnostic-next)
+
+
+" 检查上前一个位置是否为空格
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+
+" tab键进行多次映射
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"使用 <cr> 确认补全：
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+let g:coc_snippet_next = '<tab>'
+
+call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets', 'coc-vetur')
+
+
+
+""""""""""majutsushi/tagbar"""""""""
 
 "上一个/下一个标签页切换的快捷键
 nmap <F3> :TagbarToggle<CR>
-nmap <F9> <ESC>:bp<RETURN>
-nmap <F10> <ESC>:bn<RETURN>
+nmap <leader>1 <ESC>:bp<RETURN>
+nmap <leader>2 <ESC>:bn<RETURN>
 nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
-
-
-set tags=tags;/                 "允许进入项目根目录查找ctags
-
-""""""""""""目录树设置""""""""""""
+""""""""""""目录树设置""""""""""""""
 "tr打开目录树
 map tr :NERDTreeToggle<CR>      
-"au VimEnter * NERDTree " 启动vim开启目录树
 let g:NERDTreeWinSize=17  "目录树宽度设置
 
-""""nerdtree-git-plugin""""
+"""""""""nerdtree-git-plugin""""""""
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -166,23 +210,79 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
-""""""""""""""""SuperTab"""""""""""""""""""
-let g:SuperTabRetainCompletionType=2
-" 0 - 不记录上次的补全方式
-" 1 - 记住上次的补全方式,直到用其他的补全命令改变它
-" 2 - 记住上次的补全方式,直到按ESC退出插入模式为止
+"""""""""""文件搜索器"""""""""""""""
+let g:ctrlp_map = '<c-p>'
 
 
-"""""""""""scrooloose/syntastic""""""""""""
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-let OmniCpp_MayCompleteArrow = 1
+"""""""""""文件搜索器"""""""""""""""
+nmap ss <Plug>(easymotion-s2)
 
 
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+""""""Yggdroot / indentLine""""""""
+:set list lcs=tab:\|\ 
+"let g:indentLine_setColors = 0
+"let g:indentLine_bgcolor_term = 202
+"let g:indentLine_bgcolor_gui = '#FF5F00'
+let g:indentLine_char = 'c'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
+
+let g:go_fmt_command = "goimports"
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>ge <Plug>(go-rename)　
+
+
+"autocmd BufWritePre *.go :Fmt
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+
+source ~/.vim/company-doc.vim
 "php doc注释插件
 source ~/.vim/company-doc.vim
 source ~/.vim/php-doc.vim
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
+".vim/plugged/coc.nvim/plugin/coc.vim jumpDefinition 改成cocActionAsync
