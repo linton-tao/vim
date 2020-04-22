@@ -1,2 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/peach/code/LeetCode/.git'
+let g:netrw_dirhist_4='/Users/peach/code/nope'
+let g:netrw_dirhist_3='/Users/peach/code'
+let g:netrw_dirhist_2='/Users/peach/go/src/go_learning/src/ch1/main'
+let g:netrw_dirhist_1='/usr/local/go'
