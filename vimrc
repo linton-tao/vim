@@ -87,6 +87,10 @@ set backspace=2                 "高版本vim不兼容删除baspace 　设置 ba
 "             缩进问题             "
 """"""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
+Plug 'w0ng/vim-hybrid'                        "背景色
+Plug 'tomasr/molokai'                        "背景色
+Plug 'altercation/vim-colors-solarized'                        "背景色
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}    "目录树，触发是才生成
 Plug 'Xuyuanp/nerdtree-git-plugin'                        "目录树配置图标
 Plug 'mhinz/vim-startify'                                "修改启动界面
@@ -119,7 +123,14 @@ call plug#end()
 "             颜色配置             "
 """"""""""""""""""""""""""""""""""""
 set t_Co=256                    "设置终端256色"
-colorscheme tender
+"colorscheme tender
+
+""""""""""""""hybrid""""""""""""""""""""""
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+"colorscheme hybrid
+
+colorscheme molokai
 
 "底部状态栏
 let g:airline_theme="cobalt2"
@@ -170,13 +181,13 @@ endfunction
 
 
 " tab键进行多次映射
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <C-n>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "使用 <cr> 确认补全：
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<CR>"
 
 let g:coc_snippet_next = '<tab>'
 
