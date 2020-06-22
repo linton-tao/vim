@@ -181,19 +181,20 @@ endfunction
 
 
 " tab键进行多次映射
-inoremap <silent><expr> <C-n>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "使用 <cr> 确认补全：
-inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<CR>"
+let g:coc_snippet_next = '<c-j>'
 
-let g:coc_snippet_next = '<tab>'
+" Formatting selected code.格式化格式化代码
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets', 'coc-vetur')
-
-
 
 """"""""""majutsushi/tagbar"""""""""
 
@@ -268,6 +269,8 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 let g:go_fmt_command = "goimports"
 
+let g:go_test_show_name = 0
+
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -290,7 +293,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 
-source ~/.vim/company-doc.vim
 "php doc注释插件
 source ~/.vim/company-doc.vim
 source ~/.vim/php-doc.vim
