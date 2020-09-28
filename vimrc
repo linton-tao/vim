@@ -51,6 +51,11 @@ map fvs :vsplit<CR>
 "保存
 map fd :w<CR>
 
+map mm :Tabularize /=<CR>
+map m> :Tabularize /=><CR>
+map m/ :Tabularize ////<CR>
+
+
 "输入设置
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
@@ -87,26 +92,27 @@ set backspace=2                 "高版本vim不兼容删除baspace 　设置 ba
 "             缩进问题             "
 """"""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-Plug 'w0ng/vim-hybrid'                        "背景色
-Plug 'tomasr/molokai'                        "背景色
-Plug 'altercation/vim-colors-solarized'                        "背景色
+Plug 'w0ng/vim-hybrid'                  " 背景色
+Plug 'tomasr/molokai'                   " 背景色
+Plug 'altercation/vim-colors-solarized' " 背景色
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'}    "目录树，触发是才生成
-Plug 'Xuyuanp/nerdtree-git-plugin'                        "目录树配置图标
-Plug 'mhinz/vim-startify'                                "修改启动界面
-Plug 'Yggdroot/indentLine'                                "增加代码缩进线条
-Plug 'vim-airline/vim-airline'                          "底部标签栏
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'} " 目录树，触发是才生成
+Plug 'Xuyuanp/nerdtree-git-plugin'                     " 目录树配置图标
+Plug 'mhinz/vim-startify'                              " 修改启动界面
+Plug 'Yggdroot/indentLine'                             " 增加代码缩进线条
+Plug 'vim-airline/vim-airline'                         " 底部标签栏
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jacoborus/tender'                                   "tender主题
 
 Plug 'ConradIrwin/vim-bracketed-paste'                   "处理复制问题
 Plug 'majutsushi/tagbar'                   
-Plug 'scrooloose/nerdcommenter'                           "快速注释
-Plug 'ctrlpvim/ctrlp.vim'                                   "文件搜索器
-Plug 'easymotion/vim-easymotion'                                   "快速定位
-Plug 'tpope/vim-surround'                                   "成对编辑
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  "模糊查询 
-Plug 'junegunn/fzf'               "模糊查询 
+Plug 'godlygeek/tabular'                                          " 代码对齐工具
+Plug 'scrooloose/nerdcommenter'                                   " 快速注释
+Plug 'ctrlpvim/ctrlp.vim'                                         " 文件搜索器
+Plug 'easymotion/vim-easymotion'                                  " 快速定位
+Plug 'tpope/vim-surround'                                         " 成对编辑
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " 模糊查询
+Plug 'junegunn/fzf'                                               " 模糊查询
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -194,7 +200,12 @@ let g:coc_snippet_next = '<c-j>'
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets', 'coc-vetur')
+xmap <leader>p  <Plug>(coc-format)
+nmap <leader>p  <Plug>(coc-format)
+
+call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets', 'coc-vetur', 'coc-eslint')
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
 """"""""""majutsushi/tagbar"""""""""
 
@@ -299,3 +310,5 @@ source ~/.vim/php-doc.vim
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
 ".vim/plugged/coc.nvim/plugin/coc.vim jumpDefinition 改成cocActionAsync
+hi Normal  ctermfg=252 ctermbg=none
+hi Nontext  ctermfg=252 ctermbg=none
