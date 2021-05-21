@@ -50,11 +50,16 @@ map fs :split<CR>
 map fvs :vsplit<CR>
 "保存
 map fd :w<CR>
+map te :term<CR><c-w>r
 
 map mm :Tabularize /=<CR>
 map m> :Tabularize /=><CR>
 map m/ :Tabularize ////<CR>
 
+inoremap <C-j> <Right>
+inoremap <C-k> <Left>
+"inoremap <C-k> <Up>
+"inoremap <C-j> <Down>
 
 "输入设置
 inoremap ( ()<ESC>i
@@ -115,11 +120,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " 模糊查询
 Plug 'junegunn/fzf'                                               " 模糊查询
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'buoto/gotests-vim'
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 call plug#end()
 
 
@@ -157,9 +163,9 @@ if &term =~ '256color'
     set t_ut=
 endif
 
-if $TERM=="xterm-256color" && (has("termguicolors"))
-    set termguicolors
-endif
+"if $TERM=="xterm-256color" && (has("termguicolors"))
+    "set termguicolors
+"endif
 
 
 
@@ -193,6 +199,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 "使用 <cr> 确认补全：
 let g:coc_snippet_next = '<c-j>'
 
@@ -260,6 +267,7 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_2/bin/ctags'
 
 """""""""""文件搜索器"""""""""""""""
 let g:ctrlp_map = '<c-p>'
@@ -288,7 +296,7 @@ au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>t <Plug>(go-test-func)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
@@ -302,6 +310,8 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+let g:gotests_bin = '/Users/duoduo/go/bin/gotests'
 
 
 "php doc注释插件
