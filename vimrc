@@ -41,7 +41,7 @@ hi WildMenu        guifg=#ffffff guibg=#FFB6C1 term=reverse
 "             基础键位             "
 """"""""""""""""""""""""""""""""""""
 "关闭文件
-map fc :close<CR>
+map fc :bdelete<CR>
 "关闭vim
 map fq :quit<CR>
 "竖切屏
@@ -50,7 +50,7 @@ map fs :split<CR>
 map fvs :vsplit<CR>
 "保存
 map fd :w<CR>
-map te :term<CR><c-w>r
+map te :term<CR><c-w>L
 
 map mm :Tabularize /=<CR>
 map m> :Tabularize /=><CR>
