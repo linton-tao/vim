@@ -48,6 +48,8 @@ map fq :quit<CR>
 map fs :split<CR>
 "横切屏
 map fvs :vsplit<CR>
+"去掉虚线
+map tt :IndentLinesToggle<CR>
 "保存
 map fd :w<CR>
 map te :term<CR><c-w>L
