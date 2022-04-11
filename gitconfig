@@ -1,0 +1,34 @@
+[gui]
+    encoding = utf-8
+ [i18n]
+ commitencoding = GB2312
+    logoutputencoding = utf-8
+ [user]
+	name = taolintao
+	email = taolintao@zuoyebang.com
+ [core]
+     editor = vim
+    quotepath = false
+ [alias]
+     st = status --short
+     br = branch
+     co = checkout
+     ci = commit -v
+     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+     ignore = update-index --skip-worktree
+ [color]
+     status = auto
+     ui = auto
+ [difftool "sourcetree"]
+     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+     path =
+ [https]
+     ;proxy = proxy.zuoyebang.com:80
+     ;sslverify = false
+ [http]
+     ;proxy = proxy.zuoyebang.com:80
+ [i18n "commit"]
+     encoding = utf-8
+[url "git@git.zuoyebang.cc:"]
+	insteadOf = https://git.zuoyebang.cc/
+	insteadOf = https://git.zuoyebang.cc/
