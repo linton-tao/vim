@@ -5,7 +5,7 @@ set encoding=utf-8
 set nocompatible           "关闭兼容模式
 syntax enable 			        "语法高亮
 filetype plugin indent on 	    "文件插件
-set showtabline=2               "总是显示标签栏 
+set showtabline=2               "总是显示标签栏
 set laststatus=2                "总显示最后一个窗口的状态行
 
 set wildmenu                    "vim 自身命令行模式智能补全
@@ -20,7 +20,7 @@ set mouse=v 			        "鼠标可视
 
 set nobackup                    "取消vim自动备份
 set noswapfile
-
+set signcolumn=number
 
 set scrolloff=10                "向下滚动保留10行显示
 set noeb vb t_vb=               "取消报错闪烁和提醒响铃
@@ -33,7 +33,6 @@ set cursorcolumn
 hi CursorLine cterm=NONE ctermbg=black
 hi Cursorcolumn cterm=NONE ctermbg=black"
 hi WildMenu        guifg=#ffffff guibg=#FFB6C1 term=reverse
-
 
 
 
@@ -51,7 +50,7 @@ map fvs :vsplit<CR>
 "去掉虚线
 map tt :IndentLinesToggle<CR>
 "保存
-map fd :w<CR>
+map fd :w<CR>:%s/\s\+$//g<CR>:w<CR>
 map te :term<CR><c-w>L
 
 map mm :Tabularize /=<CR>
@@ -112,7 +111,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jacoborus/tender'                                   "tender主题
 
 Plug 'ConradIrwin/vim-bracketed-paste'                   "处理复制问题
-Plug 'majutsushi/tagbar'                   
+Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'                                          " 代码对齐工具
 Plug 'scrooloose/nerdcommenter'                                   " 快速注释
 Plug 'ctrlpvim/ctrlp.vim'                                         " 文件搜索器
@@ -126,7 +125,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
+""前端相关组件 废弃
 Plug 'buoto/gotests-vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'neoclide/vim-jsx-improve'
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 call plug#end()
 
@@ -188,29 +192,37 @@ nmap <leader>e <Plug>(coc-diagnostic-next)
 
 
 " 检查上前一个位置是否为空格
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-
-" tab键进行多次映射
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      "\ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 "使用 <cr> 确认补全：
 let g:coc_snippet_next = '<c-j>'
 
 " Formatting selected code.格式化格式化代码
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
+noremap <leader>3 :Autoformat<CR>
 xmap <leader>p  <Plug>(coc-format)
-nmap <leader>p  <Plug>(coc-format)
 
 call coc#add_extension('coc-json', 'coc-phpls', 'coc-snippets', 'coc-vetur', 'coc-eslint')
 " Add `:Format` command to format current buffer.
@@ -226,7 +238,7 @@ nmap <F11> <ESC>:tabprevious<RETURN>
 nmap <F12> <ESC>:tabnext<RETURN>
 """"""""""""目录树设置""""""""""""""
 "tr打开目录树
-map tr :NERDTreeToggle<CR>      
+map tr :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=17  "目录树宽度设置
 
 """""""""nerdtree-git-plugin""""""""
@@ -280,10 +292,10 @@ nmap ss <Plug>(easymotion-s2)
 
 
 """"""Yggdroot / indentLine""""""""
-:set list lcs=tab:\|\ 
-"let g:indentLine_setColors = 0
-"let g:indentLine_bgcolor_term = 202
-"let g:indentLine_bgcolor_gui = '#FF5F00'
+:set list lcs=tab:\|\     "空格
+let g:indentline_setcolors = 0
+let g:indentline_bgcolor_term = 202
+let g:indentline_bgcolor_gui = '#ff5f00'
 let g:indentLine_char = 'c'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
