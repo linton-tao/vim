@@ -78,7 +78,7 @@ let g:pdv_cfg_CommentSingle = "//"
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = "$id$"
-let g:pdv_cfg_Author = "taolintao<taolintao@zuoyebang.com>"
+let g:pdv_cfg_Author = "linton<linton.tlt@xiaoman.cn>"
 let g:pdv_cfg_Copyright = "2015-2017 The PHP Group"
 
 let g:pdv_cfg_ReturnVal = "mixed"

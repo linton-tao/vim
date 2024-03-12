@@ -17,6 +17,8 @@ set hlsearch 			        "高亮显示搜索结果
 set incsearch 			        "边输边搜，即时更新搜索结果
 set showcmd 			        "在ruler左边显示当前正在输入的命令
 set mouse=v 			        "鼠标可视
+set lazyredraw
+
 
 set nobackup                    "取消vim自动备份
 set noswapfile
@@ -30,9 +32,9 @@ let g:sql_type_default = 'mysql'
 "光标显示行列
 set cursorline
 set cursorcolumn
-hi CursorLine cterm=NONE ctermbg=black
-hi Cursorcolumn cterm=NONE ctermbg=black"
-hi WildMenu        guifg=#ffffff guibg=#FFB6C1 term=reverse
+hi CursorLine cterm      = NONE ctermbg  = black
+hi Cursorcolumn cterm    = NONE ctermbg  = black"
+hi WildMenu        guifg = #ffffff guibg = #FFB6C1 term = reverse
 
 
 
@@ -50,12 +52,15 @@ map fvs :vsplit<CR>
 "去掉虚线
 map tt :IndentLinesToggle<CR>
 "保存
-map fd :w<CR>:%s/\s\+$//g<CR>:w<CR>
+map fd :w<CR>
 map te :term<CR><c-w>L
 
 map mm :Tabularize /=<CR>
 map m> :Tabularize /=><CR>
 map m/ :Tabularize ////<CR>
+
+map ma :set mouse=a <CR>
+"map mv :set mouse=v <CR>
 
 inoremap <C-j> <Right>
 inoremap <C-k> <Left>
@@ -101,6 +106,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0ng/vim-hybrid'                  " 背景色
 Plug 'tomasr/molokai'                   " 背景色
 Plug 'altercation/vim-colors-solarized' " 背景色
+Plug 'morhetz/gruvbox'
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'} " 目录树，触发是才生成
 Plug 'Xuyuanp/nerdtree-git-plugin'                     " 目录树配置图标
@@ -131,6 +137,11 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/vim-jsx-improve'
+
+Plug 'skywind3000/asyncrun.vim'
+Plug 'eshion/vim-sync'
+
+
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 call plug#end()
 
@@ -148,7 +159,7 @@ set t_Co=256                    "设置终端256色"
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 "colorscheme hybrid
 
-colorscheme molokai
+colorscheme gruvbox
 
 "底部状态栏
 let g:airline_theme="cobalt2"
@@ -281,7 +292,8 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
-let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_2/bin/ctags'
+"let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_2/bin/ctags'
+let g:Tlist_Ctags_Cmd='/opt/homebrew/bin/ctags'
 
 """""""""""文件搜索器"""""""""""""""
 let g:ctrlp_map = '<c-p>'
@@ -336,3 +348,16 @@ vnoremap <C-K> :call PhpDocRange()<CR>
 ".vim/plugged/coc.nvim/plugin/coc.vim jumpDefinition 改成cocActionAsync
 hi Normal  ctermfg=252 ctermbg=none
 hi Nontext  ctermfg=252 ctermbg=none
+
+
+
+" brew install ctags
+let g:sync_exe_filenames = '.sync;' " Looks backward for a file named ".sync"
+"nnoremap <C-U> <ESC>:call SyncUploadFile()<CR>
+autocmd BufWritePost * :call SyncUploadFile()
+
+
+vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+noremap <leader>yd :<C-u>Yde<CR>
+
